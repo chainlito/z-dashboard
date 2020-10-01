@@ -41,13 +41,13 @@ const Pool1Stats = ({ tokenPrice, account }: Props) => {
     if (token1Price > 0) {
       web3client.poolGetRewardRate(web3client.pool1Contract).then(res => {
         if (tokenPrice > 0) {
-          const roi = res * tokenPrice / Math.pow(10, 18) / token1Price;
+          const roi = res * tokenPrice / totalStaked / token1Price;
           setRoiUnit(roi);
         }
-        setRate(res * staked / Math.pow(10, 36));
+        setRate(res * staked / totalStaked / Math.pow(10, 18));
       });
     }
-  }, [token1Price, tokenPrice, staked]);
+  }, [token1Price, tokenPrice, staked, totalStaked]);
 
   return (
     <React.Fragment>

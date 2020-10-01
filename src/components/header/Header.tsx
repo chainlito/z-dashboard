@@ -24,7 +24,7 @@ const Header: React.FC<Props> = ({ account, history, loadAccount }: Props) => {
     <Container>
       <div className="nav-header">
         <div className="center-v">
-			    <img src={Logo} width='35' alt='yTSLA' />
+			    <img src={Logo} width='60' alt='yTSLA' />
         </div>
         <div className="flex-h">
           <Button className='btn-text' onClick={() => history.push('/')} >Farm</Button>

@@ -132,7 +132,7 @@ async function poolGetPeriodFinish(contract: any): Promise<Date> {
 }
 
 async function poolGetRewardRate(contract: any): Promise<number> {
-  const result = await contract.methods.rewardPerToken().call();
+  const result = await contract.methods.rewardRate().call();
   return result;
 }
 

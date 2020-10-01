@@ -24,26 +24,30 @@ const FarmComposition = () => {
   const [tokenPrice, setTokenPrice] = React.useState<number>(0);
   const [pool1APY, setPool1APY] = React.useState<number>(0);
   const [pool2APY, setPool2APY] = React.useState<number>(0);
+  const [pool1Staked, setPool1Staked] = React.useState<number>(0);
+  const [pool2Staked, setPool2Staked] = React.useState<number>(0);
   useEffect(() => {
     dexclient.getZTokenPrice().then(res => setTokenPrice(res));
+    web3client.getTotalSupply(web3client.pool1Contract).then(res => setPool1Staked(res));
+    web3client.getTotalSupply(web3client.pool2Contract).then(res => setPool2Staked(res));
   });
   useEffect(() => {
-    if (tokenPrice > 0) {
+    if (tokenPrice && pool1Staked && pool2Staked) {
       dexclient.getYTokenPrice().then(price => {
         web3client.poolGetRewardRate(web3client.pool1Contract).then(res => {
-          const roi = res * tokenPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+          const roi = res * tokenPrice / pool1Staked / price * 86400 * 365 * 100;
           setPool1APY(roi);
         });
       })
 
       dexclient.getLpTokenPrice().then(price => {
         web3client.poolGetRewardRate(web3client.pool2Contract).then(res => {
-            const roi = res * tokenPrice / Math.pow(10, 18) / price * 86400 * 365 * 100;
+            const roi = res * tokenPrice / pool2Staked / price * 86400 * 365 * 100;
             setPool2APY(roi);
         });
       });
     }
-  }, [tokenPrice]);
+  }, [tokenPrice, pool1Staked, pool2Staked]);
 
   return (
     <React.Fragment>
