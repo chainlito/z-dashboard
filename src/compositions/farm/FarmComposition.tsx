@@ -54,7 +54,9 @@ const FarmComposition = () => {
       <Header />
       <Container>
         <div className='flex-v screen-center'>
-          <div className='mt-30 mb-20 center-h'>
+          <div className='mt-30 mb-20 center-h text-red'>
+            <span>Redeem Ƶ for NFTs at &nbsp;</span>
+            <a href='https://ztoken.art/'>Ztoken.art</a>
           </div>
           <div className='mb-20'>
             <div className='center-h text-title mb-10'>

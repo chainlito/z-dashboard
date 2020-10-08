@@ -39,4 +39,15 @@
   &-gray {
     color: $dark-gray;
   }
+
+  &-red {
+    color: $red;
+    font-size: 1.8rem;
+
+    a {
+      text-decoration: inherit;
+      font-weight: bold;
+      color: $red;
+    }
+  }
 }
